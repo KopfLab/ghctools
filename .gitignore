@@ -35,6 +35,6 @@ vignettes/*.pdf
 
 # Auxiliary package files
 /docs/
-/tmp/
+*/tmp/
 ~*
 *.nb.html
