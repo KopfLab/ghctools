@@ -1,6 +1,6 @@
 context("Cloning functions")
 
-test_that("", {
+test_that("Test cloning functions errors", {
   
   # cloning 
   expect_error(ghc_clone_repositories(), "repos data frame required")

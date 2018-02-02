@@ -1,13 +1,4 @@
-# add new functions
-# - 1: copy a solutions file to all student repos
-# - 2: push the master branch of all student repos
-# - 3: create a submit branch based on a specific commit for all student repos and push the branch to origin
-#     - git branch submit <commit-shae>
-#     - git push origin submit
-# - 4: MAYBE: together with #3, delete existing submit branches to re-create based on a specific commit
-# - 5: when updating respositories, allow changes to be discarded
-#     - git checkout -- .
-
+# cloning functionality ----
 
 #' Clone assignment repositories
 #' 
@@ -56,6 +47,7 @@ ghc_clone_repositories <- function(repos, folder = ".", token = NULL, pull = TRU
 #' @param path the directory to clone to, if not provided, clones into the current working directory with the repository name
 #' @param token the authentication token (only required for private repositories if global credentials are not set)
 #' @param pull if the repository already exists, whether to update it from the remote
+#' @return whether the repository was cloned/pulled
 #' @export
 ghc_clone_repository <- function(url, path = NULL, token = NULL, pull = TRUE) {
   
@@ -65,23 +57,29 @@ ghc_clone_repository <- function(url, path = NULL, token = NULL, pull = TRUE) {
   
   # parent directory
   if (!dir.exists(dirname(path)))  {
-    message("Creating parent directory: ", dirname(path))
+    message("Info: creating parent directory: ", dirname(path))
     dir.create(dirname(path), recursive = TRUE)
   } 
   
   # different cases
+  folder <- basename(path)
   if (!dir.exists(path)) {
-    message(sprintf("'%s': cloning repository for the first time", basename(path)))
-    github_call <- "git clone \"${url}\" \"${path}\""
+    message(glue("Info: '{folder}' - cloning repository for the first time"))
+    cmd_folder <- "."
+    cmd <- glue("git clone \"{url}\" \"{path}\"")
+  } else if (dir.exists(path) && !dir.exists(file.path(path, ".git"))) {
+    message(glue("Info: '{folder}' - directory already exists but is NOT a github repository -> no action"))
+    return(FALSE)
   } else if (dir.exists(path) && pull) {
-    message(sprintf("'%s': repository already exists -> pulling changes from remote", basename(path)))
-    github_call <- "cd \"${path}\" && git pull \"${url}\""
+    message(glue("Info: '{folder}' - repository already exists -> pulling changes from remote"))
+    cmd_folder <- path
+    cmd <- "git pull"
   } else {
-    message(sprintf("'%s': repository already exists but NOT pulling changes from remote -> no action", basename(path)))
+    message(glue("Info: '{folder}' - repository already exists but NOT pulling changes from remote -> no action"))
     return(FALSE)
   } 
   
   # run github call
-  github_call <- str_interp(github_call, list(path = path, url = url))
-  invisible(system(github_call))
+  exec_command(cmd_folder, cmd)
+  return(TRUE)
 }
