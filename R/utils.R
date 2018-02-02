@@ -1,3 +1,30 @@
+# utilities functions ---
+
+# File system functions ---
+
+#' Find local repositories
+#' 
+#' @param prefix repository prefix (typically this would be github classroom assignment prefix)
+#' @param folder the target directory where to look for git repositories
+#' @param recursive whether to search recursively
+#' @return paths to the found repositories (relative to the working directory unless param \code{folder} is an absolute path)
+ghc_find_local_repositories <- function(prefix, folder = ".", recursive = TRUE) {
+  
+  if (missing(prefix)) stop("repository prefix required", call. = FALSE)
+  found <- list.files(folder, pattern = glue("^{prefix}"), recursive = recursive, full.names = TRUE, include.dirs = TRUE)
+  
+  # check for dirs
+  found <- found[map_lgl(found, ~dir.exists(file.path(.x, ".git")))]
+  
+  # info
+  glue("Info: found {length(found)} git repositories with the prefix '{prefix}'") %>% 
+    message()
+  
+  return(found)
+}
+
+# GraphQL functions --
+
 #' Authenticate for GraphQL queries
 #' 
 #' Helper function to authenticate the GitHub account for running GraphQL (gql) queries. This function is exported for users who want to run custom GraphQL queries against the GitHub server but does not need to be called directly for standard use of the ghctools package.
@@ -19,7 +46,7 @@ ghc_authenticate_gql <- function(token) {
 #' 
 #' @param query GraphQL query
 #' @param gql_client a GraphQL client object - will be generated based on the token by default
-#' @param token authentication token (only needed if \param{gql_client} is not provided) 
+#' @param token authentication token (only needed if \code{gql_client} is not provided) 
 #' @return returns the $data of the query
 #' @family GitHub query functions
 #' @export

@@ -1,3 +1,5 @@
+# information functionality -----
+
 #' Find GitHub Classroom repositories for an assignment
 #' 
 #' @inheritParams ghc_authenticate_gql
