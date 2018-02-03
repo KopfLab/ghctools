@@ -4,14 +4,14 @@
 
 #' Find local repositories
 #' 
-#' @param prefix repository prefix (typically this would be github classroom assignment prefix)
-#' @param folder the target directory where to look for git repositories
-#' @param recursive whether to search recursively
+#' @param prefix repository prefix (typically this would be a github classroom assignment prefix)
+#' @param folder the target directory where to look for matching git repositories (searches recursively in all subdirectories)
 #' @return paths to the found repositories (relative to the working directory unless param \code{folder} is an absolute path)
-ghc_find_local_repositories <- function(prefix, folder = ".", recursive = TRUE) {
+#' @export
+ghc_find_local_repositories <- function(prefix, folder = ".") {
   
   if (missing(prefix)) stop("repository prefix required", call. = FALSE)
-  found <- list.files(folder, pattern = glue("^{prefix}"), recursive = recursive, full.names = TRUE, include.dirs = TRUE)
+  found <- list.files(folder, pattern = glue("^{prefix}"), recursive = TRUE, full.names = TRUE, include.dirs = TRUE)
   
   # check for dirs
   found <- found[map_lgl(found, ~dir.exists(file.path(.x, ".git")))]

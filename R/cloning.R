@@ -80,6 +80,6 @@ ghc_clone_repository <- function(url, path = NULL, token = NULL, pull = TRUE) {
   } 
   
   # run github call
-  exec_command(cmd_folder, cmd)
+  exec_command(cmd_folder, cmd, info = FALSE)
   return(TRUE)
 }
