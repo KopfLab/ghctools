@@ -39,3 +39,54 @@ test_that("Test command functions errors", {
 })
 
 
+test_that("Test command function returns", {
+  
+  # general command
+  expect_message(retval <- ghc_repos_run_git_command("DNE", "git status"), 
+                 "executing .*git.* for 0 repositories")
+  expect_equal(retval, "DNE")
+  
+  # cloning -- cannot test with out token
+  
+  # other standard commands
+  expect_message(retval <- ghc_repos_git_status("DNE"), 
+                 "executing .*git status.* for 0 repositories")
+  expect_equal(retval, "DNE")
+  
+  expect_message(retval <- ghc_repos_git_pull("DNE"), 
+                 "executing .*git pull.* for 0 repositories")
+  expect_equal(retval, "DNE")
+  
+  expect_message(retval <- ghc_repos_git_push("DNE"), 
+                 "executing .*git push.* for 0 repositories")
+  expect_equal(retval, "DNE")
+  
+  expect_message(retval <- ghc_repos_git_commit("DNE", message = "test"), 
+                 "executing .*git commit.* for 0 repositories")
+  expect_equal(retval, "DNE")
+  
+  expect_message(retval <- ghc_repos_git_add("DNE", filepath = "test"), 
+                 "executing .*git add.* for 0 repositories")
+  expect_equal(retval, "DNE")
+  
+  expect_message(retval <- ghc_repos_git_remove("DNE", filepath = "test"), 
+                 "executing .*git rm.* for 0 repositories")
+  expect_equal(retval, "DNE")
+  
+  expect_message(retval <- ghc_repos_git_create_branch("DNE", branch = "test"), 
+                 "executing .*git checkout.* for 0 repositories")
+  expect_equal(retval, "DNE")
+  
+  expect_message(retval <- ghc_repos_git_delete_branch("DNE", branch = "test"), 
+                 "executing .*git branch.* for 0 repositories")
+  expect_equal(retval, "DNE")
+ 
+  expect_message(retval <- ghc_repos_git_switch_branch("DNE", branch = "test"), 
+                 "executing .*git checkout test.* for 0 repositories")
+  expect_equal(retval, "DNE")
+  
+  expect_message(retval <- ghc_repos_git_discard_changes("DNE"), 
+                 "executing .*git checkout -- \\..* for 0 repositories")
+  expect_equal(retval, "DNE")
+  
+})

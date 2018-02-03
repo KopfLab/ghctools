@@ -9,7 +9,7 @@
 #' @export
 ghc_repos_get_local_information <- function(prefix, folder = ".") {
   
-  round <- find_repositories(prefix, folder = folder)
+  found <- find_repositories(prefix, folder = folder)
   
   return(found)
 }
