@@ -1,18 +1,33 @@
 # information functionality -----
 
-#' Find GitHub Classroom repositories for an assignment
+#' Get local information on GitHub Classroom repositories
+#' 
+#' @param prefix repository prefix (typically this would be a github classroom assignment prefix)
+#' @param folder the target directory where to look for matching git repositories (searches recursively in all subdirectories)
+#' @return paths to the found repositories (relative to the working directory unless param \code{folder} is an absolute path)
+#' @family information functions
+#' @export
+ghc_repos_get_local_information <- function(prefix, folder = ".") {
+  
+  round <- find_repositories(prefix, folder = folder)
+  
+  return(found)
+}
+
+#' Get information on GitHub Classroom from GitHub
 #' 
 #' @inheritParams ghc_authenticate_gql
 #' @param org organization name (i.e. organization github user)
 #' @param prefix assignment prefix (i.e. repository prefix set for github classroom assignment)
 #' @param max maximum number of repositories to retrieve information for
-#' @return data frame with repository names, urls, last commits, last pull requests
+#' @return data frame with repository names, urls, last commits, last pull request
+#' @family information functions
 #' @export
-ghc_find_assignment_repositories <- function (org, prefix, token, max = 100) {
+ghc_repos_get_github_information <- function (prefix, org, token, max = 100) {
   
   # security checks
-  if (missing(org)) stop("organization required", call. = FALSE)
   if (missing(prefix)) stop("assignment prefix required", call. = FALSE)
+  if (missing(org)) stop("organization required", call. = FALSE)
   if (missing(token)) stop("access token required for github queries", call. = FALSE)
   
   # run repositories query
