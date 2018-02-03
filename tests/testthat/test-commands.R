@@ -20,6 +20,8 @@ test_that("Test command functions errors", {
   expect_error(ghc_git_remove(prefix = "test"), "file path is required")
   expect_error(ghc_git_create_branch(branch = "test"), "prefix required")
   expect_error(ghc_git_create_branch(prefix = "test"), "branch name required")
+  expect_error(ghc_git_delete_branch(branch = "test"), "prefix required")
+  expect_error(ghc_git_delete_branch(prefix = "test"), "branch name required")
   expect_error(ghc_git_switch_branch(), "prefix required")
   expect_error(ghc_git_discard_changes(), "prefix required")
   

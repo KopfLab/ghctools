@@ -102,6 +102,15 @@ ghc_git_create_branch <- function(prefix, branch, parent = "master", publish = T
 }
 
 #' @rdname ghc_git_commands
+#' @details \code{ghc_git_delete_branch} deletes an existing branch for all repositories that match the \code{prefix}. Be warned that with this function the branch is deleted both locally and on the server so be careful when using it. Can be followed by \code{ghc_git_create_branch} to recreate a branch with the same name but based on different commit (e.g. for updating an assignment `submit` branch).
+#' @inheritParams ghc_git_create_branch
+#' @export
+ghc_git_delete_branch <- function(prefix, branch, publish = TRUE, folder = ".") {
+  if (missing(branch)) stop("branch name required", call. = FALSE)
+  ghc_run_git_command(prefix, command = glue("git branch -D {branch} && git push origin -d {branch}"), folder = folder)
+}
+
+#' @rdname ghc_git_commands
 #' @details \code{ghc_git_switch_branch} lets you switch to a different branch that already exists for all repositories that match the \code{prefix}. Note that the git command used for this is \code{git checkout}.
 #' @inheritParams ghc_git_create_branch
 #' @export
