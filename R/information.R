@@ -11,6 +11,16 @@ ghc_repos_get_local_information <- function(prefix, folder = ".") {
   
   found <- find_repositories(prefix, folder = folder)
   
+  # FIXME: continue here
+  # use git branch, git status -b --porcelain, etc.
+  # to get information on active branch, all branches, status relative to origin (commits - 3 ahead/behind up to date), and modified files
+  
+  # return a data frame
+  # use this information to build a real test scenario (test-scenario) for the package
+  # add travis and appveyor
+  # add documentation with packagedown
+  # add badges that show [docs|link to docs], [cran], [travis], etc.
+  
   return(found)
 }
 
@@ -82,10 +92,10 @@ ghc_repos_get_github_information <- function (prefix, org, token, max = 100) {
         created = createdAt,
         last_pushed = pushedAt) %>% 
       # make sure only repositories that start with the prefix
-      filter(grepl(str_c("^", prefix), repository)) %>% 
+      filter(str_detect(repository, str_c("^", prefix))) %>% 
       # url at the end
       select(repository, private, matches("[^(url)]"), url)
-    
+      
   } else {
     # no results for the query
     df <- data_frame()

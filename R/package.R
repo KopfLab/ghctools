@@ -2,10 +2,10 @@
 "_PACKAGE"
 
 #' @importFrom glue glue collapse
-#' @importFrom dplyr select rename mutate data_frame tbl_df matches everything
-#' @importFrom purrr pmap map_chr map_lgl
+#' @importFrom dplyr select rename mutate data_frame tbl_df matches everything mutate_at filter
+#' @importFrom purrr pmap map_chr map_lgl map map2
 #' @importFrom lubridate ymd_hms
-#' @importFrom stringr str_c str_interp str_replace
+#' @importFrom stringr str_c str_interp str_replace str_detect
 #' @import ghql
 #' @import httr
 NULL

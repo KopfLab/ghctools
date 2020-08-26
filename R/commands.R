@@ -16,7 +16,7 @@
 ghc_repos_copy_to <- function(prefix, from, to = basename(from), folder = ".", git_add = TRUE) {
   
   folders <- suppressMessages(find_repositories(prefix, folder = folder))
-  if (!file.exists(from)) stop("'from' is not a valid file or folder", call. = FALSE)
+  if (!file.exists(from)) stop("'from' is not an existing file or folder", call. = FALSE)
   
   #info
   is_dir <- dir.exists(from)

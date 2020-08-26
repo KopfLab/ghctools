@@ -1,14 +1,11 @@
-# utilities functions ---
+# Utilities functions ======
 
-# File system functions ---
+# OS functions -----
 
-#' Find local repositories
-#' 
-#' @param prefix repository prefix (typically this would be a github classroom assignment prefix)
-#' @param folder the target directory where to look for matching git repositories (searches recursively in all subdirectories)
-#' @return paths to the found repositories (relative to the working directory unless param \code{folder} is an absolute path)
-#' @export
-ghc_find_local_repositories <- function(prefix, folder = ".") {
+# Find git repos
+# @param prefix prefix for the folders
+# @param folder which folder to search in
+find_repositories <- function(prefix, folder = ".") {
   
   if (missing(prefix)) stop("repository prefix required", call. = FALSE)
   found <- list.files(folder, pattern = glue("^{prefix}"), recursive = TRUE, full.names = TRUE, include.dirs = TRUE)
@@ -23,11 +20,28 @@ ghc_find_local_repositories <- function(prefix, folder = ".") {
   return(found)
 }
 
-# GraphQL functions --
+# Git functions -----
+
+# Execute command in each folder
+# Convenience function to execute a bash command in a list of folders.
+# @param folders absolute paths or paths relative to current working directory
+exec_command <- function(folders, command, info = TRUE, output = TRUE, indent = 6) {
+  spaces <- rep(" ", indent) %>% collapse()
+  map2(folders, 1:length(folders), function(folder, i) {
+    if (info) 
+      glue("Info: repository {i}/{length(folders)} ({folder})...") %>% message()
+    cmd_output <- glue("cd \"{folder}\" && {command} 2>&1") %>% system(intern = TRUE)
+    if (output && length(cmd_output) > 0) 
+      message(spaces, collapse(cmd_output, sep = str_c("\n", spaces)))
+  })
+  invisible(NULL)
+}
+
+# GraphQL functions -----
 
 #' Authenticate for GraphQL queries
 #' 
-#' Helper function to authenticate the GitHub account for running GraphQL (gql) queries. This function is exported for users who want to run custom GraphQL queries against the GitHub server but does not need to be called directly for standard use of the ghctools package.
+#' Helper function to authenticate the GitHub account for running GraphQL (gql) queries. This function is exported for users who want to run custom GraphQL queries against the GitHub server but does not need to be called directly for standard use of the ghctools package. Note that the validity of the authentication token will only be tested once a query (\link{ghc_run_gql}) is run.
 #' 
 #' @param token authentication token for github API (https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
 #' @return \link[ghql]{GraphqlClient} object with authentication headers
@@ -53,7 +67,14 @@ ghc_authenticate_gql <- function(token) {
 ghc_run_gql <- function(query, query_name = "query", gql_client = ghc_authenticate_gql(token), token = NULL) {
   qry <- Query$new()
   qry$query(query_name, query)
-  results <- gql_client$exec(qry$queries[[query_name]])
+  tryCatch(
+    results <- gql_client$exec(qry$queries[[query_name]]),
+    error = function(e) {
+      if (str_detect(e$message, "Unauthorized")) 
+        stop("invalid access token - ", e$message, call. = FALSE)
+      else
+        stop("could not execute GraphQL query - ", e$message, call. = FALSE)
+    })
   if (is.null(results$data)) {
     message("There were errors:")
     print(results$errors)
