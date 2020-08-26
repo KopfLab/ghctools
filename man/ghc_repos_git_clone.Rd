@@ -24,16 +24,18 @@ repositories data frame, see \link{ghc_repos_git_find_repositories} for details
 Clone all students' repositories for a specific assignment. Token with private repo access privileges is required if the students' repositories are private. This function can also be used to update existing local repositories for an assignment (i.e. after initial cloning if the students have made updates in the mean time). If updates are not desired, set \code{pull=TRUE}.
 }
 \seealso{
-Other command functions: \code{\link{ghc_repos_copy_to}},
-  \code{\link{ghc_repos_git_add}},
-  \code{\link{ghc_repos_git_commit}},
-  \code{\link{ghc_repos_git_create_branch}},
-  \code{\link{ghc_repos_git_delete_branch}},
-  \code{\link{ghc_repos_git_discard_changes}},
-  \code{\link{ghc_repos_git_pull}},
-  \code{\link{ghc_repos_git_push}},
-  \code{\link{ghc_repos_git_remove}},
-  \code{\link{ghc_repos_git_status}},
-  \code{\link{ghc_repos_git_switch_branch}},
-  \code{\link{ghc_repos_run_git_command}}
+Other command functions: 
+\code{\link{ghc_repos_copy_to}()},
+\code{\link{ghc_repos_git_add}()},
+\code{\link{ghc_repos_git_commit}()},
+\code{\link{ghc_repos_git_create_branch}()},
+\code{\link{ghc_repos_git_delete_branch}()},
+\code{\link{ghc_repos_git_discard_changes}()},
+\code{\link{ghc_repos_git_pull}()},
+\code{\link{ghc_repos_git_push}()},
+\code{\link{ghc_repos_git_remove}()},
+\code{\link{ghc_repos_git_status}()},
+\code{\link{ghc_repos_git_switch_branch}()},
+\code{\link{ghc_repos_run_git_command}()}
 }
+\concept{command functions}

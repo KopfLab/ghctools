@@ -22,16 +22,18 @@ returns the \code{prefix} invisibly to facilitate piping
 Deletes an existing branch for all repositories that match the \code{prefix}. Be warned that with this function the branch is deleted both locally and on the server so be careful when using it. Can be followed by \code{\link{ghc_repos_git_create_branch}} to recreate a branch with the same name but based on different commit (e.g. for rebranching an assignment branch off a specific commit).
 }
 \seealso{
-Other command functions: \code{\link{ghc_repos_copy_to}},
-  \code{\link{ghc_repos_git_add}},
-  \code{\link{ghc_repos_git_clone}},
-  \code{\link{ghc_repos_git_commit}},
-  \code{\link{ghc_repos_git_create_branch}},
-  \code{\link{ghc_repos_git_discard_changes}},
-  \code{\link{ghc_repos_git_pull}},
-  \code{\link{ghc_repos_git_push}},
-  \code{\link{ghc_repos_git_remove}},
-  \code{\link{ghc_repos_git_status}},
-  \code{\link{ghc_repos_git_switch_branch}},
-  \code{\link{ghc_repos_run_git_command}}
+Other command functions: 
+\code{\link{ghc_repos_copy_to}()},
+\code{\link{ghc_repos_git_add}()},
+\code{\link{ghc_repos_git_clone}()},
+\code{\link{ghc_repos_git_commit}()},
+\code{\link{ghc_repos_git_create_branch}()},
+\code{\link{ghc_repos_git_discard_changes}()},
+\code{\link{ghc_repos_git_pull}()},
+\code{\link{ghc_repos_git_push}()},
+\code{\link{ghc_repos_git_remove}()},
+\code{\link{ghc_repos_git_status}()},
+\code{\link{ghc_repos_git_switch_branch}()},
+\code{\link{ghc_repos_run_git_command}()}
 }
+\concept{command functions}

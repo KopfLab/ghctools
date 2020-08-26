@@ -4,8 +4,12 @@
 \alias{ghc_run_gql}
 \title{Run a GrahQL query}
 \usage{
-ghc_run_gql(query, query_name = "query",
-  gql_client = ghc_authenticate_gql(token), token = NULL)
+ghc_run_gql(
+  query,
+  query_name = "query",
+  gql_client = ghc_authenticate_gql(token),
+  token = NULL
+)
 }
 \arguments{
 \item{query}{GraphQL query}
@@ -21,5 +25,7 @@ returns the $data of the query
 Run a GraphQL query against the github graphql node. Stops if errors are encountered during query execution. This function is exported for users who want to run custom GraphQL queries against the GitHub server but does not need to be called directly for standard use of the ghctools package.
 }
 \seealso{
-Other GitHub query functions: \code{\link{ghc_authenticate_gql}}
+Other GitHub query functions: 
+\code{\link{ghc_authenticate_gql}()}
 }
+\concept{GitHub query functions}

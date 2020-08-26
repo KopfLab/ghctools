@@ -20,16 +20,18 @@ returns the \code{prefix} invisibly to facilitate piping
 Adds the specified file to the active branch for all repositories that match the \code{prefix}. Use \code{\link{ghc_repos_git_commit}} to commit added files, followed by \code{\link{ghc_repos_git_push}} to push them to the server. Note that this function will always add the specific filed and overwrite .gitignore rules if necessary. You can also use this function to tag an existing file to be included in the next commit (this happens automatically for all modified files if you use the \code{\link{ghc_repos_git_commit}} function to commit changes).
 }
 \seealso{
-Other command functions: \code{\link{ghc_repos_copy_to}},
-  \code{\link{ghc_repos_git_clone}},
-  \code{\link{ghc_repos_git_commit}},
-  \code{\link{ghc_repos_git_create_branch}},
-  \code{\link{ghc_repos_git_delete_branch}},
-  \code{\link{ghc_repos_git_discard_changes}},
-  \code{\link{ghc_repos_git_pull}},
-  \code{\link{ghc_repos_git_push}},
-  \code{\link{ghc_repos_git_remove}},
-  \code{\link{ghc_repos_git_status}},
-  \code{\link{ghc_repos_git_switch_branch}},
-  \code{\link{ghc_repos_run_git_command}}
+Other command functions: 
+\code{\link{ghc_repos_copy_to}()},
+\code{\link{ghc_repos_git_clone}()},
+\code{\link{ghc_repos_git_commit}()},
+\code{\link{ghc_repos_git_create_branch}()},
+\code{\link{ghc_repos_git_delete_branch}()},
+\code{\link{ghc_repos_git_discard_changes}()},
+\code{\link{ghc_repos_git_pull}()},
+\code{\link{ghc_repos_git_push}()},
+\code{\link{ghc_repos_git_remove}()},
+\code{\link{ghc_repos_git_status}()},
+\code{\link{ghc_repos_git_switch_branch}()},
+\code{\link{ghc_repos_run_git_command}()}
 }
+\concept{command functions}

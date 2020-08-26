@@ -4,8 +4,13 @@
 \alias{ghc_repos_copy_to}
 \title{Copy a file or folder}
 \usage{
-ghc_repos_copy_to(prefix, from, to = basename(from), folder = ".",
-  git_add = TRUE)
+ghc_repos_copy_to(
+  prefix,
+  from,
+  to = basename(from),
+  folder = ".",
+  git_add = TRUE
+)
 }
 \arguments{
 \item{prefix}{repository prefix (typically this would be a github classroom assignment prefix)}
@@ -25,16 +30,18 @@ returns the \code{prefix} invisibly to facilitate piping
 Copy a file or folder to a number of repositories with the same prefix (typically those form the same assignment). Note that this function will overwrite existing files/folders that have the same name. It will also make sure that the copied file/folder is tracked by git (\code{\link{ghc_repos_git_add}}) unless parameter \code{git_add=FALSE}.
 }
 \seealso{
-Other command functions: \code{\link{ghc_repos_git_add}},
-  \code{\link{ghc_repos_git_clone}},
-  \code{\link{ghc_repos_git_commit}},
-  \code{\link{ghc_repos_git_create_branch}},
-  \code{\link{ghc_repos_git_delete_branch}},
-  \code{\link{ghc_repos_git_discard_changes}},
-  \code{\link{ghc_repos_git_pull}},
-  \code{\link{ghc_repos_git_push}},
-  \code{\link{ghc_repos_git_remove}},
-  \code{\link{ghc_repos_git_status}},
-  \code{\link{ghc_repos_git_switch_branch}},
-  \code{\link{ghc_repos_run_git_command}}
+Other command functions: 
+\code{\link{ghc_repos_git_add}()},
+\code{\link{ghc_repos_git_clone}()},
+\code{\link{ghc_repos_git_commit}()},
+\code{\link{ghc_repos_git_create_branch}()},
+\code{\link{ghc_repos_git_delete_branch}()},
+\code{\link{ghc_repos_git_discard_changes}()},
+\code{\link{ghc_repos_git_pull}()},
+\code{\link{ghc_repos_git_push}()},
+\code{\link{ghc_repos_git_remove}()},
+\code{\link{ghc_repos_git_status}()},
+\code{\link{ghc_repos_git_switch_branch}()},
+\code{\link{ghc_repos_run_git_command}()}
 }
+\concept{command functions}

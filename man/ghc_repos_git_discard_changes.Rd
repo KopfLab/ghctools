@@ -18,16 +18,18 @@ returns the \code{prefix} invisibly to facilitate piping
 Discards all unstaged(!) changes for repositories that match the \code{prefix}. This does NOT affect changes that have already been staged/committed (you would have to use \code{git reset} to do that). Note that this function uses the \code{git checkout} command, there is no \code{git discard}.
 }
 \seealso{
-Other command functions: \code{\link{ghc_repos_copy_to}},
-  \code{\link{ghc_repos_git_add}},
-  \code{\link{ghc_repos_git_clone}},
-  \code{\link{ghc_repos_git_commit}},
-  \code{\link{ghc_repos_git_create_branch}},
-  \code{\link{ghc_repos_git_delete_branch}},
-  \code{\link{ghc_repos_git_pull}},
-  \code{\link{ghc_repos_git_push}},
-  \code{\link{ghc_repos_git_remove}},
-  \code{\link{ghc_repos_git_status}},
-  \code{\link{ghc_repos_git_switch_branch}},
-  \code{\link{ghc_repos_run_git_command}}
+Other command functions: 
+\code{\link{ghc_repos_copy_to}()},
+\code{\link{ghc_repos_git_add}()},
+\code{\link{ghc_repos_git_clone}()},
+\code{\link{ghc_repos_git_commit}()},
+\code{\link{ghc_repos_git_create_branch}()},
+\code{\link{ghc_repos_git_delete_branch}()},
+\code{\link{ghc_repos_git_pull}()},
+\code{\link{ghc_repos_git_push}()},
+\code{\link{ghc_repos_git_remove}()},
+\code{\link{ghc_repos_git_status}()},
+\code{\link{ghc_repos_git_switch_branch}()},
+\code{\link{ghc_repos_run_git_command}()}
 }
+\concept{command functions}

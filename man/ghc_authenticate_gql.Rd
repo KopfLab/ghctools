@@ -16,5 +16,7 @@ ghc_authenticate_gql(token)
 Helper function to authenticate the GitHub account for running GraphQL (gql) queries. This function is exported for users who want to run custom GraphQL queries against the GitHub server but does not need to be called directly for standard use of the ghctools package. Note that the validity of the authentication token will only be tested once a query (\link{ghc_run_gql}) is run.
 }
 \seealso{
-Other GitHub query functions: \code{\link{ghc_run_gql}}
+Other GitHub query functions: 
+\code{\link{ghc_run_gql}()}
 }
+\concept{GitHub query functions}

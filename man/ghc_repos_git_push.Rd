@@ -18,16 +18,18 @@ returns the \code{prefix} invisibly to facilitate piping
 Pushes committed changes in the active branch (see \code{\link{ghc_repos_git_commit}}) for all repositories that match the \code{prefix} to GitHub. Note that this requires the repositories to have been cloned with a valid access token, otherwise this operation will fail due to lack of permissions. GitHub will also not allow \code{git push} if there are unpulled changes on the server. Use \code{\link{ghc_repos_git_pull}} followed by \code{\link{ghc_repos_git_push}} in this case (unless there are merging issues).
 }
 \seealso{
-Other command functions: \code{\link{ghc_repos_copy_to}},
-  \code{\link{ghc_repos_git_add}},
-  \code{\link{ghc_repos_git_clone}},
-  \code{\link{ghc_repos_git_commit}},
-  \code{\link{ghc_repos_git_create_branch}},
-  \code{\link{ghc_repos_git_delete_branch}},
-  \code{\link{ghc_repos_git_discard_changes}},
-  \code{\link{ghc_repos_git_pull}},
-  \code{\link{ghc_repos_git_remove}},
-  \code{\link{ghc_repos_git_status}},
-  \code{\link{ghc_repos_git_switch_branch}},
-  \code{\link{ghc_repos_run_git_command}}
+Other command functions: 
+\code{\link{ghc_repos_copy_to}()},
+\code{\link{ghc_repos_git_add}()},
+\code{\link{ghc_repos_git_clone}()},
+\code{\link{ghc_repos_git_commit}()},
+\code{\link{ghc_repos_git_create_branch}()},
+\code{\link{ghc_repos_git_delete_branch}()},
+\code{\link{ghc_repos_git_discard_changes}()},
+\code{\link{ghc_repos_git_pull}()},
+\code{\link{ghc_repos_git_remove}()},
+\code{\link{ghc_repos_git_status}()},
+\code{\link{ghc_repos_git_switch_branch}()},
+\code{\link{ghc_repos_run_git_command}()}
 }
+\concept{command functions}

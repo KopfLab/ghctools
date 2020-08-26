@@ -18,5 +18,7 @@ paths to the found repositories (relative to the working directory unless param 
 Get local information on GitHub Classroom repositories
 }
 \seealso{
-Other information functions: \code{\link{ghc_repos_get_github_information}}
+Other information functions: 
+\code{\link{ghc_repos_get_github_information}()}
 }
+\concept{information functions}

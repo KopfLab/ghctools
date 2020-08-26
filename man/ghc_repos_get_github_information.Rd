@@ -22,5 +22,7 @@ data frame with repository names, urls, last commits, last pull request
 Get information on GitHub Classroom from GitHub
 }
 \seealso{
-Other information functions: \code{\link{ghc_repos_get_local_information}}
+Other information functions: 
+\code{\link{ghc_repos_get_local_information}()}
 }
+\concept{information functions}
