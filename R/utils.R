@@ -50,7 +50,7 @@ exec_command <- function(folders, command, info = TRUE, output = TRUE, indent = 
 ghc_authenticate_gql <- function(token) {
   GraphqlClient$new(
     url = "https://api.github.com/graphql",
-    headers = add_headers(Authorization = paste0("Bearer ", token))
+    headers = list(Authorization = paste0("Bearer ", token))
   )
 }
 
@@ -75,11 +75,13 @@ ghc_run_gql <- function(query, query_name = "query", gql_client = ghc_authentica
       else
         stop("could not execute GraphQL query - ", e$message, call. = FALSE)
     })
+  # parse JSON
+  results <- jsonlite::parse_json(results)
+  # check for errors
   if (is.null(results$data)) {
     message("There were errors:")
     print(results$errors)
     stop("cannot process further", call. = FALSE)
   }
-  
   return(results$data)
 }

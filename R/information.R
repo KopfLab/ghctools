@@ -76,11 +76,11 @@ ghc_repos_get_github_information <- function (prefix, org, token, max = 100) {
     results$search$nodes$pullRequests <- as.list(results$search$nodes$pullRequests$nodes)
     df <- results$search$nodes %>% 
       # dplyr data frame
-      tbl_df() %>% 
+      purrr::map_df(dplyr::tbl_df) %>%
       # add last pull request to data frame
       mutate(
-        last_pr_created = map_chr(pullRequests, ~.x$publishedAt %||% NA),
-        last_pr_login = map_chr(pullRequests, ~.x$author$login %||% NA)
+        last_pr_created = map_chr(pullRequests, ~.x[[1]]$publishedAt %||% NA),
+        last_pr_login = map_chr(pullRequests, ~.x[[1]]$author$login %||% NA)
       ) %>% 
       select(-pullRequests) %>% 
       # format date columns
@@ -90,7 +90,8 @@ ghc_repos_get_github_information <- function (prefix, org, token, max = 100) {
         private = isPrivate,
         repository = name,
         created = createdAt,
-        last_pushed = pushedAt) %>% 
+        last_pushed = pushedAt
+      ) %>% 
       # make sure only repositories that start with the prefix
       filter(str_detect(repository, str_c("^", prefix))) %>% 
       # url at the end
