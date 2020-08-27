@@ -26,13 +26,13 @@ find_repositories <- function(prefix, folder = ".") {
 # Convenience function to execute a bash command in a list of folders.
 # @param folders absolute paths or paths relative to current working directory
 exec_command <- function(folders, command, info = TRUE, output = TRUE, indent = 6) {
-  spaces <- rep(" ", indent) %>% collapse()
+  spaces <- rep(" ", indent) %>% glue::glue_collapse()
   map2(folders, 1:length(folders), function(folder, i) {
     if (info) 
       glue("Info: repository {i}/{length(folders)} ({folder})...") %>% message()
     cmd_output <- glue("cd \"{folder}\" && {command} 2>&1") %>% system(intern = TRUE)
     if (output && length(cmd_output) > 0) 
-      message(spaces, collapse(cmd_output, sep = str_c("\n", spaces)))
+      message(spaces, glue::glue_collapse(cmd_output, sep = str_c("\n", spaces)))
   })
   invisible(NULL)
 }
