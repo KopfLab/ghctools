@@ -1,7 +1,7 @@
 Package: ghctools
 Title: Tools for GitHub Classroom
 Description: Tools for using GitHubClassroom.
-Version: 0.1.0.9999
+Version: 0.1.1.9999
 Authors@R: person("Sebastian", "Kopf", email = "sebastian.kopf@colorado.edu",
     role = c("aut", "cre"))
 URL: https://github.com/kopflab/ghctools

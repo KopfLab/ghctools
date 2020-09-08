@@ -79,8 +79,14 @@ ghc_repos_get_github_information <- function (prefix, org, token, max = 100) {
       purrr::map_df(dplyr::tbl_df) %>%
       # add last pull request to data frame
       mutate(
-        last_pr_created = map_chr(pullRequests, ~.x[[1]]$publishedAt %||% NA),
-        last_pr_login = map_chr(pullRequests, ~.x[[1]]$author$login %||% NA)
+        last_pr_created = map_chr(pullRequests, ~{
+          if (length(.x) == 0 || is.null(.x[[1]]$publishedAt)) NA_character_
+          else .x[[1]]$publishedAt
+        }),
+        last_pr_login = map_chr(pullRequests, ~{
+          if (length(.x) == 0 || is.null(.x[[1]]$author$login)) NA_character_
+          else .x[[1]]$author$login
+        })
       ) %>% 
       select(-pullRequests) %>% 
       # format date columns
