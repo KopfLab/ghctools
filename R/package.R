@@ -1,7 +1,6 @@
 #' @keywords internal
 "_PACKAGE"
 
-#' @importFrom glue glue collapse
 #' @importFrom dplyr select rename mutate data_frame tbl_df matches everything mutate_at filter
 #' @importFrom purrr pmap map_chr map_lgl map map2
 #' @importFrom lubridate ymd_hms
